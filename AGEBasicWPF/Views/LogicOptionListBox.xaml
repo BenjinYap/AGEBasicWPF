@@ -9,7 +9,36 @@
     <Grid>
         <StackPanel>
             <Label Content="{Binding Text}"></Label>
-            <ListBox ItemsSource="{Binding Options}" PreviewMouseDown="ListBox_PreviewMouseDown"></ListBox>
+            <ListBox ItemsSource="{Binding Options}" PreviewMouseDown="ListBox_PreviewMouseDown">
+                <Style TargetType="ListBox">
+                    <Setter Property="Template">
+                        <Setter.Value>
+                            <ControlTemplate>
+                                <!--<Border BorderThickness="5 5 5 5" BorderBrush="Orange">
+                                    <ItemsControl></ItemsControl>
+                                </Border>-->
+                            </ControlTemplate>
+                        </Setter.Value>
+                    </Setter>
+                </Style>
+                <!--<ListBox.ItemContainerStyle>
+                    <Style TargetType="ListBoxItem">
+                        <Setter Property="Template">
+                            <Setter.Value>
+                                <ControlTemplate TargetType="ListBoxItem">
+                                    <ContentPresenter></ContentPresenter>
+                                    <ControlTemplate.Triggers>
+                                        <Trigger Property="IsMouseOver" Value="True">
+                                            <Setter Property="Foreground" Value="Red"></Setter>
+                                        </Trigger>
+                                    </ControlTemplate.Triggers>
+                                </ControlTemplate>
+                            </Setter.Value>
+                        </Setter>
+                        
+                    </Style>
+                </ListBox.ItemContainerStyle>-->
+            </ListBox>
         </StackPanel>
     </Grid>
 </views:LogicBox>

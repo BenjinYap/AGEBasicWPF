@@ -28,6 +28,7 @@ namespace AGEBasicWPF.Views {
 			ListBoxItem item = ItemsControl.ContainerFromElement (listBox, e.OriginalSource as DependencyObject) as ListBoxItem;
 			listBox.PreviewMouseDown -= ListBox_PreviewMouseDown;
 			
+
 			Debug.WriteLine (listBox.ItemContainerGenerator.IndexFromContainer (item));
 		}
 	}
