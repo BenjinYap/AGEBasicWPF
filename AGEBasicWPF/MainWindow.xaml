@@ -1,0 +1,46 @@
+﻿<Window x:Class="AGEBasicWPF.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:viewModels="clr-namespace:AGEBasicWPF.ViewModels"
+        xmlns:views="clr-namespace:AGEBasicWPF.Views"
+        Title="MainWindow" Height="350" Width="525"
+        DataContext="{Binding RelativeSource={RelativeSource Self}}">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="1*"/>
+            <ColumnDefinition Width="2*"/>
+        </Grid.ColumnDefinitions>
+        
+        <Label Content="{Binding Game.Name}"></Label>
+        
+        <ItemsControl Grid.Column="0" Grid.ColumnSpan="1" Grid.Row="1" Grid.RowSpan="1" ItemsSource="{Binding GlobalResourcesList.List}">
+            <ItemsControl.ItemTemplate>
+                <DataTemplate>
+                    <StackPanel>
+                        <Label Foreground="Red" Content="{Binding Value.Name}"></Label>
+                        <Label Content="{Binding Value.Quantity}"></Label>
+                    </StackPanel>
+                </DataTemplate>
+            </ItemsControl.ItemTemplate>
+        </ItemsControl>
+
+        <Border BorderThickness="1 0 0 0" BorderBrush="Red" Grid.Column="1" Grid.ColumnSpan="1" Grid.RowSpan="2">
+            <ScrollViewer>
+                <ItemsControl ItemsSource="{Binding LogicResults}">
+                    <ItemsControl.Resources>
+                        <DataTemplate DataType="{x:Type viewModels:LogicTextResult}">
+                            <views:LogicTextBox DataContext="{Binding}"></views:LogicTextBox>
+                        </DataTemplate>
+                        <DataTemplate DataType="{x:Type viewModels:LogicOptionListResult}">
+                            <views:LogicOptionListBox DataContext="{Binding}"></views:LogicOptionListBox>
+                        </DataTemplate>
+                    </ItemsControl.Resources>
+                </ItemsControl>
+            </ScrollViewer>
+        </Border>
+    </Grid>
+</Window>
