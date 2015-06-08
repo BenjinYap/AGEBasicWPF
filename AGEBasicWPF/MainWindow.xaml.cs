@@ -52,8 +52,16 @@ namespace AGEBasicWPF {
 			this.overlord.SetGameAndSave (this.Game, this.Save);
 
 			moduleHandlers.Add (new CoreHandler (overlord));
+
+			moduleHandlers.ForEach (a => {
+				a.LogicResult += LogicResulted;
+			});
+
+			this.overlord.Step ();
 		}
 
-		
+		private void LogicResulted (object sender, LogicResultEventArgs e) {
+			this.LogicResults.Add (e.Result);
+		}
 	}
 }

@@ -15,7 +15,7 @@ namespace AGEBasicWPF.ModuleHandlers {
 		}
 
 		private void OptionListed (object sender, LogicOptionListEventArgs e) {
-			this.LogicResults.Add (new LogicOptionListResult (e.Text, e.Options));
+			this.FireLogicResultEvent (new LogicOptionListResult (e.Text, e.Options));
 		}
 
 		private void Texted (object sender, LogicTextEventArgs e) {
