@@ -10,18 +10,21 @@
         <StackPanel>
             <Label Content="{Binding Text}"></Label>
             <ListBox ItemsSource="{Binding Options}" PreviewMouseDown="ListBox_PreviewMouseDown">
-                <Style TargetType="ListBox">
-                    <Setter Property="Template">
-                        <Setter.Value>
-                            <ControlTemplate>
-                                <!--<Border BorderThickness="5 5 5 5" BorderBrush="Orange">
-                                    <ItemsControl></ItemsControl>
-                                </Border>-->
-                            </ControlTemplate>
-                        </Setter.Value>
-                    </Setter>
-                </Style>
-                <!--<ListBox.ItemContainerStyle>
+                <ListBox.Style>
+                    <Style TargetType="ListBox">
+                        <Setter Property="Template">
+                            <Setter.Value>
+                                <ControlTemplate>
+                                    <Border BorderThickness="5 5 5 5" BorderBrush="Orange">
+                                        <ItemsPresenter></ItemsPresenter>
+                                    </Border>
+                                </ControlTemplate>
+                            </Setter.Value>
+                        </Setter>
+                    </Style>
+                </ListBox.Style>
+                
+                <ListBox.ItemContainerStyle>
                     <Style TargetType="ListBoxItem">
                         <Setter Property="Template">
                             <Setter.Value>
@@ -37,7 +40,7 @@
                         </Setter>
                         
                     </Style>
-                </ListBox.ItemContainerStyle>-->
+                </ListBox.ItemContainerStyle>
             </ListBox>
         </StackPanel>
     </Grid>
