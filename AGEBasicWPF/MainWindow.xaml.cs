@@ -35,29 +35,30 @@ namespace AGEBasicWPF {
 
 		public ObservableCollection <LogicResult> LogicResults { get; set; }
 
-		private Overlord overlord;
+		public Overlord Overlord { get; set; }
 
 		private List <ModuleHandler> moduleHandlers = new List <ModuleHandler> ();
 
 		public MainWindow () {
-			this.overlord = new Overlord ();
+			this.Overlord = new Overlord ();
 			this.Game = GameStorage.FromXml (File.ReadAllText ("game.txt"));
 			this.Save = Game.GetFreshSave ();
 			this.GlobalResourcesList = new GlobalResourcesList (this.Game, this.Save);
 
 			this.LogicResults = new ObservableCollection <LogicResult> ();
+			//this.LogicResults.CollectionChanged += (a, b) => Debug.WriteLine (b.NewItems[0]);
 
 			InitializeComponent ();
 
-			this.overlord.SetGameAndSave (this.Game, this.Save);
+			this.Overlord.SetGameAndSave (this.Game, this.Save);
 
-			moduleHandlers.Add (new CoreHandler (overlord));
+			moduleHandlers.Add (new CoreHandler (this.Overlord));
 
 			moduleHandlers.ForEach (a => {
 				a.LogicResult += LogicResulted;
 			});
 
-			this.overlord.Step ();
+			this.Overlord.Step ();
 		}
 
 		private void LogicResulted (object sender, LogicResultEventArgs e) {
