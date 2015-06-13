@@ -56,6 +56,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="ModuleHandlers\GlobalResourcesHandler.cs" />
     <Compile Include="ModuleHandlers\CoreHandler.cs" />
     <Compile Include="ViewModels\LogicResultEventArgs.cs" />
     <Compile Include="ModuleHandlers\ModuleHandler.cs" />

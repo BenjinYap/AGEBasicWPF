@@ -53,6 +53,7 @@ namespace AGEBasicWPF {
 			this.Overlord.SetGameAndSave (this.Game, this.Save);
 
 			moduleHandlers.Add (new CoreHandler (this.Overlord));
+			moduleHandlers.Add (new GlobalResourcesHandler (this.Overlord));
 
 			moduleHandlers.ForEach (a => {
 				a.LogicResult += LogicResulted;
