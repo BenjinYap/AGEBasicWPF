@@ -3,7 +3,7 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:viewModels="clr-namespace:AGEBasicWPF.ViewModels"
         xmlns:views="clr-namespace:AGEBasicWPF.Views"
-        Title="MainWindow" Height="350" Width="525"
+        Title="MainWindow" Height="350" Width="800"
         x:Name="window"
         DataContext="{Binding RelativeSource={RelativeSource Self}}">
     <Grid>
@@ -14,6 +14,7 @@
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="1*"/>
             <ColumnDefinition Width="2*"/>
+            <ColumnDefinition Width="1*"></ColumnDefinition>
         </Grid.ColumnDefinitions>
         
         <Label Content="{Binding Game.Name}"></Label>
@@ -29,7 +30,7 @@
             </ItemsControl.ItemTemplate>
         </ItemsControl>
 
-        <Border BorderThickness="1 0 0 0" BorderBrush="Red" Grid.Column="1" Grid.ColumnSpan="1" Grid.RowSpan="2">
+        <Border BorderThickness="1 0 1 0" BorderBrush="Red" Grid.Column="1" Grid.ColumnSpan="1" Grid.RowSpan="2">
             <ScrollViewer>
                 <ItemsControl x:Name="logicBoxes" ItemsSource="{Binding LogicResults}">
                     <ItemsControl.Resources>
@@ -43,5 +44,7 @@
                 </ItemsControl>
             </ScrollViewer>
         </Border>
+        
+        <views:InventoryView Source="{Binding Path=Game}" Grid.Column="2" Grid.RowSpan="2" VerticalAlignment="Stretch"></views:InventoryView>
     </Grid>
 </Window>

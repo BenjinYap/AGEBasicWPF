@@ -58,11 +58,16 @@
     </ApplicationDefinition>
     <Compile Include="ModuleHandlers\GlobalResourcesHandler.cs" />
     <Compile Include="ModuleHandlers\CoreHandler.cs" />
+    <Compile Include="ViewModels\Inventory.cs" />
+    <Compile Include="ViewModels\ItemStackViewModel.cs" />
     <Compile Include="ViewModels\LogicResultEventArgs.cs" />
     <Compile Include="ModuleHandlers\ModuleHandler.cs" />
     <Compile Include="ViewModels\LogicOptionListResult.cs" />
     <Compile Include="ViewModels\LogicResult.cs" />
     <Compile Include="ViewModels\LogicTextResult.cs" />
+    <Compile Include="Views\InventoryView.xaml.cs">
+      <DependentUpon>InventoryView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\LogicBox.cs" />
     <Compile Include="Views\LogicOptionListBox.xaml.cs">
       <DependentUpon>LogicOptionListBox.xaml</DependentUpon>
@@ -83,6 +88,10 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="Views\InventoryView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\LogicOptionListBox.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

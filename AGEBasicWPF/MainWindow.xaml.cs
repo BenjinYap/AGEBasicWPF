@@ -31,7 +31,9 @@ namespace AGEBasicWPF {
 	public partial class MainWindow:Window {
 		public Game Game { get; set; }
 		public Save Save { get; set; }
+		
 		public GlobalResourcesList GlobalResourcesList { get; set; }
+		public Inventory Inventory { get; set; }
 
 		public ObservableCollection <LogicResult> LogicResults { get; set; }
 
@@ -58,6 +60,8 @@ namespace AGEBasicWPF {
 			moduleHandlers.ForEach (a => {
 				a.LogicResult += LogicResulted;
 			});
+
+			this.Inventory = new Inventory (this.Save.ItemStacks);
 
 			this.Overlord.Step ();
 		}
