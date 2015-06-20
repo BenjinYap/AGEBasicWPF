@@ -23,6 +23,25 @@ namespace AGEBasicWPF.ViewModels {
 						this.List.Add (new ItemStackViewModel (game, (ItemStack) awd));
 					}
 				}
+
+				if (b.Action == System.Collections.Specialized.NotifyCollectionChangedAction.Remove) {
+					object removedObject = null;
+
+					foreach (object obj in b.OldItems) {
+						if (this.source.Contains (obj) == false) {
+							removedObject = obj;
+							break;
+						}
+					}
+
+					for (int i = 0; i < this.List.Count; i++) {
+						if (this.List [i].Model == removedObject) {
+							this.List.RemoveAt (i);
+						}
+
+						break;
+					}
+				}
 			};
 		}
 	}
