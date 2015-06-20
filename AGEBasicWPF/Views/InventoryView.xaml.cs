@@ -1,5 +1,4 @@
 ﻿using AGEBasicWPF.ViewModels;
-using AnyGameEngine.Modules.Items;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -21,8 +20,8 @@ namespace AGEBasicWPF.Views {
 	/// Interaction logic for Inventory.xaml
 	/// </summary>
 	public partial class InventoryView:UserControl {
-		public ObservableCollection <ItemStack> Source {
-			get { return (ObservableCollection <ItemStack>) this.GetValue (SourceProperty); }
+		public ObservableCollection <ItemStackViewModel> Source {
+			get { return (ObservableCollection <ItemStackViewModel>) this.GetValue (SourceProperty); }
 			set { this.SetValue (SourceProperty, value); }
 		}
 		
@@ -34,8 +33,6 @@ namespace AGEBasicWPF.Views {
 			InitializeComponent ();
 		}
 
-		
-
-		public static readonly DependencyProperty SourceProperty = DependencyProperty.Register ("Source", typeof (ObservableCollection <ItemStack>), typeof (InventoryView), new PropertyMetadata (null));
+		public static readonly DependencyProperty SourceProperty = DependencyProperty.Register ("Source", typeof (ObservableCollection <ItemStackViewModel>), typeof (InventoryView), new PropertyMetadata (null));
 	}
 }

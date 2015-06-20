@@ -45,7 +45,9 @@ namespace AGEBasicWPF {
 			this.Overlord = new Overlord ();
 			this.Game = GameStorage.FromXml (File.ReadAllText ("game.txt"));
 			this.Save = Game.GetFreshSave ();
+
 			this.GlobalResourcesList = new GlobalResourcesList (this.Game, this.Save);
+			this.Inventory = new Inventory (this.Game, this.Save.ItemStacks);
 
 			this.LogicResults = new ObservableCollection <LogicResult> ();
 			//this.LogicResults.CollectionChanged += (a, b) => Debug.WriteLine (b.NewItems[0]);
@@ -56,12 +58,11 @@ namespace AGEBasicWPF {
 
 			moduleHandlers.Add (new CoreHandler (this.Overlord));
 			moduleHandlers.Add (new GlobalResourcesHandler (this.Overlord));
+			moduleHandlers.Add (new ItemsModuleHandler (this.Overlord));
 
 			moduleHandlers.ForEach (a => {
 				a.LogicResult += LogicResulted;
 			});
-
-			this.Inventory = new Inventory (this.Save.ItemStacks);
 
 			this.Overlord.Step ();
 		}

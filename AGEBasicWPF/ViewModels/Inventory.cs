@@ -1,4 +1,5 @@
-﻿using AnyGameEngine.Modules.Items;
+﻿using AnyGameEngine.GameData;
+using AnyGameEngine.Modules.Items;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -12,18 +13,14 @@ namespace AGEBasicWPF.ViewModels {
 
 		private ObservableCollection <ItemStack> source;
 
-		public Inventory (ObservableCollection <ItemStack> source) {
+		public Inventory (Game game, ObservableCollection <ItemStack> source) {
+			this.List = new ObservableCollection <ItemStackViewModel> ();
 			this.source = source;
+
 			source.CollectionChanged += (a, b) => {
 				if (b.NewItems != null) {
 					foreach (var awd in b.NewItems) {
-						Debug.WriteLine (awd);
-					}
-				}
-				Debug.WriteLine ("A");
-				if (b.OldItems != null) {
-					foreach (var awd in b.OldItems) {
-						Debug.WriteLine (awd);
+						this.List.Add (new ItemStackViewModel (game, (ItemStack) awd));
 					}
 				}
 			};

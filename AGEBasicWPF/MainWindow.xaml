@@ -45,6 +45,6 @@
             </ScrollViewer>
         </Border>
         
-        <views:InventoryView Source="{Binding Path=Game}" Grid.Column="2" Grid.RowSpan="2" VerticalAlignment="Stretch"></views:InventoryView>
+        <views:InventoryView Source="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Window}}, Path=Inventory.List}" Grid.Column="2" Grid.RowSpan="2" VerticalAlignment="Stretch"></views:InventoryView>
     </Grid>
 </Window>
