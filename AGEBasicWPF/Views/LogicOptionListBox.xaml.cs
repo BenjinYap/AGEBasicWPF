@@ -1,4 +1,6 @@
-﻿using System;
+﻿using AnyGameEngine.GameData;
+using AnyGameEngine.SaveData;
+using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
@@ -19,6 +21,16 @@ namespace AGEBasicWPF.Views {
 	/// Interaction logic for LogicOptionListBox.xaml
 	/// </summary>
 	public partial class LogicOptionListBox:LogicBox {
+		public Game Game {
+			get { return (Game) this.GetValue (GameProperty); }
+			set { this.SetValue (GameProperty, value); }
+		}
+
+		public Save Save {
+			get { return (Save) this.GetValue (SaveProperty); }
+			set { this.SetValue (SaveProperty, value); }
+		}
+
 		public LogicOptionListBox () {
 			InitializeComponent ();
 		}
@@ -29,7 +41,10 @@ namespace AGEBasicWPF.Views {
 			listBox.PreviewMouseDown -= ListBox_PreviewMouseDown;
 			
 			int index = listBox.ItemContainerGenerator.IndexFromContainer (item);
-			this.Overlord.CoreModule.SelectOption (index);
+			this.Overlord.CoreModule.SelectOption (this.Game, this.Save, index);
 		}
+
+		public static readonly DependencyProperty GameProperty = DependencyProperty.Register ("Game", typeof (Game), typeof (LogicOptionListBox), new PropertyMetadata (null));
+		public static readonly DependencyProperty SaveProperty = DependencyProperty.Register ("Save", typeof (Save), typeof (LogicOptionListBox), new PropertyMetadata (null));
 	}
 }

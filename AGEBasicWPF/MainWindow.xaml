@@ -38,7 +38,7 @@
                             <views:LogicTextBox Overlord="{Binding ElementName=window, Path=Overlord}" DataContext="{Binding}"></views:LogicTextBox>
                         </DataTemplate>
                         <DataTemplate DataType="{x:Type viewModels:LogicOptionListResult}">
-                            <views:LogicOptionListBox Overlord="{Binding ElementName=window, Path=Overlord}" DataContext="{Binding}"></views:LogicOptionListBox>
+                            <views:LogicOptionListBox Overlord="{Binding ElementName=window, Path=Overlord}" Game="{Binding ElementName=window, Path=Game}" Save="{Binding ElementName=window, Path=Save}" DataContext="{Binding}"></views:LogicOptionListBox>
                         </DataTemplate>
                     </ItemsControl.Resources>
                 </ItemsControl>

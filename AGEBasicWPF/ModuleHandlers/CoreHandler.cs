@@ -1,6 +1,8 @@
 ﻿using AGEBasicWPF.ViewModels;
 using AnyGameEngine;
+using AnyGameEngine.GameData;
 using AnyGameEngine.Modules.Core;
+using AnyGameEngine.SaveData;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,7 +11,7 @@ using System.Text;
 namespace AGEBasicWPF.ModuleHandlers {
 	public class CoreHandler:ModuleHandler {
 
-		public CoreHandler (Overlord overlord):base (overlord) {
+		public CoreHandler (Overlord overlord, Game game, Save save):base (overlord, game, save) {
 			overlord.CoreModule.RoomChanged += RoomChanged;
 			overlord.CoreModule.OptionListed += OptionListed;
 			overlord.CoreModule.Texted += Texted;
@@ -17,7 +19,7 @@ namespace AGEBasicWPF.ModuleHandlers {
 
 		private void RoomChanged (object sender, LogicRoomChangeEventArgs e) {
 			this.FireLogicResultEvent (new LogicTextResult ("Switched to room " + e.Name));
-			this.Overlord.Step ();
+			this.Overlord.Step (this.Game, this.Save);
 		}
 
 		private void OptionListed (object sender, LogicOptionListEventArgs e) {
@@ -26,7 +28,7 @@ namespace AGEBasicWPF.ModuleHandlers {
 
 		private void Texted (object sender, LogicTextEventArgs e) {
 			this.FireLogicResultEvent (new LogicTextResult (e.Text));
-			this.Overlord.Step ();
+			this.Overlord.Step (this.Game, this.Save);
 		}
 	}
 }

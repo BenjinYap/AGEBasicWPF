@@ -43,7 +43,7 @@ namespace AGEBasicWPF {
 
 		public MainWindow () {
 			this.Overlord = new Overlord ();
-			this.Game = GameStorage.FromXml (File.ReadAllText ("game.txt"));
+			this.Game = new Game (this.Overlord, "game.txt");
 			this.Save = Game.GetFreshSave ();
 
 			this.GlobalResourcesList = new GlobalResourcesList (this.Game, this.Save);
@@ -54,17 +54,15 @@ namespace AGEBasicWPF {
 
 			InitializeComponent ();
 
-			this.Overlord.SetGameAndSave (this.Game, this.Save);
-
-			moduleHandlers.Add (new CoreHandler (this.Overlord));
-			moduleHandlers.Add (new GlobalResourcesHandler (this.Overlord));
-			moduleHandlers.Add (new ItemsModuleHandler (this.Overlord));
+			moduleHandlers.Add (new CoreHandler (this.Overlord, this.Game, this.Save));
+			moduleHandlers.Add (new GlobalResourcesHandler (this.Overlord, this.Game, this.Save));
+			moduleHandlers.Add (new ItemsModuleHandler (this.Overlord, this.Game, this.Save));
 
 			moduleHandlers.ForEach (a => {
 				a.LogicResult += LogicResulted;
 			});
 
-			this.Overlord.Step ();
+			this.Overlord.Step (this.Game, this.Save);
 		}
 
 		private void LogicResulted (object sender, LogicResultEventArgs e) {

@@ -1,5 +1,7 @@
 ﻿using AGEBasicWPF.ViewModels;
 using AnyGameEngine;
+using AnyGameEngine.GameData;
+using AnyGameEngine.SaveData;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,9 +13,13 @@ namespace AGEBasicWPF.ModuleHandlers {
 		public event LogicResultEventHandler LogicResult;
 
 		protected Overlord Overlord;
+		protected Game Game;
+		protected Save Save;
 
-		public ModuleHandler (Overlord overlord) {
+		public ModuleHandler (Overlord overlord, Game game, Save save) {
 			this.Overlord = overlord;
+			this.Game = game;
+			this.Save = save;
 		}
 
 		protected void FireLogicResultEvent (LogicResult result) {
