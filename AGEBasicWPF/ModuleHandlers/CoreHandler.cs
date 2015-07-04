@@ -11,7 +11,7 @@ using System.Text;
 namespace AGEBasicWPF.ModuleHandlers {
 	public class CoreHandler:ModuleHandler {
 
-		public CoreHandler (Overlord overlord, Game game, Save save):base (overlord, game, save) {
+		public CoreHandler (MainWindow mainWindow, Overlord overlord, Game game, Save save):base (mainWindow, overlord, game, save) {
 			overlord.CoreModule.RoomChanged += RoomChanged;
 			overlord.CoreModule.OptionListed += OptionListed;
 			overlord.CoreModule.Texted += Texted;
@@ -19,16 +19,17 @@ namespace AGEBasicWPF.ModuleHandlers {
 
 		private void RoomChanged (object sender, LogicRoomChangeEventArgs e) {
 			this.FireLogicResultEvent (new LogicTextResult ("Switched to room " + e.Name));
-			this.Overlord.Step (this.Game, this.Save);
+			this.MainWindow.DoClickToContinue ();
 		}
 
 		private void OptionListed (object sender, LogicOptionListEventArgs e) {
+			this.MainWindow.continueLabel.Visibility = System.Windows.Visibility.Hidden;
 			this.FireLogicResultEvent (new LogicOptionListResult (e.Text, e.Options));
 		}
 
 		private void Texted (object sender, LogicTextEventArgs e) {
 			this.FireLogicResultEvent (new LogicTextResult (e.Text));
-			this.Overlord.Step (this.Game, this.Save);
+			this.MainWindow.DoClickToContinue ();
 		}
 	}
 }

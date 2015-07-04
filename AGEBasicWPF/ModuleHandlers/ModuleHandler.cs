@@ -12,11 +12,13 @@ namespace AGEBasicWPF.ModuleHandlers {
 		public delegate void LogicResultEventHandler (object sender, LogicResultEventArgs e);
 		public event LogicResultEventHandler LogicResult;
 
+		protected MainWindow MainWindow;
 		protected Overlord Overlord;
 		protected Game Game;
 		protected Save Save;
 
-		public ModuleHandler (Overlord overlord, Game game, Save save) {
+		public ModuleHandler (MainWindow mainWindow, Overlord overlord, Game game, Save save) {
+			this.MainWindow = mainWindow;
 			this.Overlord = overlord;
 			this.Game = game;
 			this.Save = save;

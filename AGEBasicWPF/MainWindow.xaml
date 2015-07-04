@@ -44,6 +44,8 @@
                 </ItemsControl>
             </ScrollViewer>
         </Border>
+
+        <Label Margin="0 0 20 0" x:Name="continueLabel" MouseDown="Label_MouseDown" Grid.Column="1" Grid.ColumnSpan="1" Grid.RowSpan="2" Background="Black" Opacity="0.2" />
         
         <views:InventoryView Source="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Window}}, Path=Inventory.List}" Grid.Column="2" Grid.RowSpan="2" VerticalAlignment="Stretch"></views:InventoryView>
     </Grid>

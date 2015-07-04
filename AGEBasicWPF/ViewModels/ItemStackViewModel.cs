@@ -8,8 +8,8 @@ using System.Runtime.CompilerServices;
 using System.Text;
 
 namespace AGEBasicWPF.ViewModels {
-	public class ItemStackViewModel:INotifyPropertyChanged {
-		public event PropertyChangedEventHandler PropertyChanged;
+	public class ItemStackViewModel {//:INotifyPropertyChanged {
+		//public event PropertyChangedEventHandler PropertyChanged;
 
 		public ItemStack Model { get; set; }
 

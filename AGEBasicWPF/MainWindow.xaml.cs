@@ -41,6 +41,8 @@ namespace AGEBasicWPF {
 
 		private List <ModuleHandler> moduleHandlers = new List <ModuleHandler> ();
 
+		private bool clickToContinue = false;
+
 		public MainWindow () {
 			this.Overlord = new Overlord ();
 			this.Game = new Game (this.Overlord, "game.txt");
@@ -54,9 +56,13 @@ namespace AGEBasicWPF {
 
 			InitializeComponent ();
 
-			moduleHandlers.Add (new CoreHandler (this.Overlord, this.Game, this.Save));
-			moduleHandlers.Add (new GlobalResourcesHandler (this.Overlord, this.Game, this.Save));
-			moduleHandlers.Add (new ItemsModuleHandler (this.Overlord, this.Game, this.Save));
+			if (this.clickToContinue == false) {
+				this.continueLabel.Visibility = System.Windows.Visibility.Hidden;
+			}
+
+			moduleHandlers.Add (new CoreHandler (this, this.Overlord, this.Game, this.Save));
+			moduleHandlers.Add (new GlobalResourcesHandler (this, this.Overlord, this.Game, this.Save));
+			moduleHandlers.Add (new ItemsModuleHandler (this, this.Overlord, this.Game, this.Save));
 
 			moduleHandlers.ForEach (a => {
 				a.LogicResult += LogicResulted;
@@ -65,8 +71,21 @@ namespace AGEBasicWPF {
 			this.Overlord.Step (this.Game, this.Save);
 		}
 
+		public void DoClickToContinue () {
+			if (this.clickToContinue) {
+				this.continueLabel.Visibility = System.Windows.Visibility.Visible;
+			} else {
+				this.Overlord.Step (this.Game, this.Save);
+			}
+		}
+
 		private void LogicResulted (object sender, LogicResultEventArgs e) {
 			this.LogicResults.Add (e.Result);
+		}
+
+		private void Label_MouseDown (object sender, MouseButtonEventArgs e) {
+			this.continueLabel.Visibility = System.Windows.Visibility.Hidden;
+			this.Overlord.Step (this.Game, this.Save);
 		}
 	}
 }
