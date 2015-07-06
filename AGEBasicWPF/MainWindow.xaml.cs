@@ -45,7 +45,7 @@ namespace AGEBasicWPF {
 
 		public MainWindow () {
 			this.Overlord = new Overlord ();
-			this.Game = new Game (this.Overlord, "game.txt");
+			this.Game = new Game (this.Overlord, "demo.txt");
 			this.Save = Game.GetFreshSave ();
 
 			this.GlobalResourcesList = new GlobalResourcesList (this.Game, this.Save);

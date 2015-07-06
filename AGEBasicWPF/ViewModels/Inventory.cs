@@ -37,9 +37,8 @@ namespace AGEBasicWPF.ViewModels {
 					for (int i = 0; i < this.List.Count; i++) {
 						if (this.List [i].Model == removedObject) {
 							this.List.RemoveAt (i);
+							break;
 						}
-
-						break;
 					}
 				}
 			};
